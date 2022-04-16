@@ -83,3 +83,21 @@ class BaseModel:
         data.append(request.form.to_dict())
         with open(storage_file, "w") as fp:
             json.dump(data, fp)
+    
+############### Additions  ###################### 
+    @classmethod
+    def get(cls):
+        storage_file = f"db/storage/{cls.__name__.lower()}.json"
+        with open (storage_file, "r") as fp:
+            things = json.load(fp)
+            for a_dict  in things:
+                for key, value in a_dict.items():
+                    if val == value and key ==key:
+                        return cls
+                return"key doesnt exist"
+    
+    @classmethod
+    def all(cls):
+        storage_file = f"db/storage/{cls.__name__.lower()}.json"
+        with open (storage_file, "r") as fp:
+            return [cls(value) for value in json.load(fp)]
