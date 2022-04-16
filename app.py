@@ -38,7 +38,7 @@ def new_calendar():
         return make_response("Missing fields!", 400)
     return "<p>Calendar created</p>"
 
-@app.route("/calendar/<calendar-id>")
+@app.route("/calendar/<calendar_id>")
 def calendar_page(calendar_id):
     calendar = Calendar.get(calendar_id)
     if not calendar:
