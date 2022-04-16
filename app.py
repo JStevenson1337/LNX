@@ -27,7 +27,10 @@ def calendar_search():
 
 @app.route("/create/calendar", methods=["GET"])
 def calendar_form():
-    return render_template("calendar_create.html", fields=Calendar.fields)
+    field_dict = {
+        field.name: field.metadata.get("type") for field in Calendar.fields
+    }
+    return render_template("calendar_create.html", fields=field_dict)
 
 
 @app.route("/create/calendar", methods=["POST"])
@@ -55,7 +58,10 @@ Routes:
 """
 @app.route("/create/event", methods=["GET"])
 def event_form():
-    return render_template("event_create.html", fields=Event.fields)
+    field_dict = {
+        field.name: field.metadata.get("type") for field in Event.fields
+    }
+    return render_template("event_create.html", fields=field_dict)
 
 
 @app.route("/create/event", methods=["POST"])
