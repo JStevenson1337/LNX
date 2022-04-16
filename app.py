@@ -27,10 +27,7 @@ def calendar_search():
 
 @app.route("/create/calendar", methods=["GET"])
 def calendar_form():
-    field_dict = {
-        field.name: field.metadata.get("type") for field in Calendar.fields
-    }
-    return render_template("calendar_create.html", fields=field_dict)
+    return render_template("calendar_create.html", fields=Calendar.form_fields())
 
 
 @app.route("/create/calendar", methods=["POST"])
@@ -58,10 +55,7 @@ Routes:
 """
 @app.route("/create/event", methods=["GET"])
 def event_form():
-    field_dict = {
-        field.name: field.metadata.get("type") for field in Event.fields
-    }
-    return render_template("event_create.html", fields=field_dict)
+    return render_template("event_create.html", fields=Event.form_fields())
 
 
 @app.route("/create/event", methods=["POST"])
@@ -85,3 +79,10 @@ def event_page(event_id):
     if not event:
         return make_response("<p>Event not found</p>", 404)
     return render_template("event_page.html", **event.to_dict())
+
+@app.route("/event/<event_id>/contact")
+def event_contact(event_id):
+    event = Event.get(event_id)
+    if not event:
+        return make_response("<p>Event not found</p>", 404)
+    return render_template("event_contact.html", event=event)
