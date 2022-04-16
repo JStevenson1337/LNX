@@ -17,11 +17,14 @@
 
 <body>
     <div class="container">
-        <p>Fill out this form to create your Calendar</p>
-        <form>
-        {% for item in fields %}
-            <div id="fields"><label>{{ item }}: <input type="{{ fields[item] }}" name="{{ item }}"></label></div>
-        {% endfor %}
+        <p>Fill out this form to create your event</p>
+        <form method="POST">
+        <div id="fields">
+            {% for field in fields %}
+            <label>{{ field }}: <input type="{{ fields[field] }}" name="{{ field }}"></label>
+            {% endfor %}
+        </div>
+        <input type="submit">
         </form>
     </div>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>

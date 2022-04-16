@@ -18,9 +18,11 @@
     <div class="container">
         <p>Fill out this form to create your event</p>
         <form method="POST">
-        {% for item in fields %}
-            <div id="fields"><label>{{ item }}: <input type="{{ fields[item] }}" name="{{ item }}"></label></div>
-        {% endfor %}
+        <div id="fields">
+            {% for field in fields %}
+                <label>{{ field }}: <input type="{{ fields[field] }}" name="{{ field }}"></label>
+            {% endfor %}
+        </div>
         <input type="submit">
         </form>
     </div>
