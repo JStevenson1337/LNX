@@ -1,32 +1,12 @@
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import List
-from dataclasses import dataclass, fields
-from privacystate import Privacy
+from uuid import uuid4
+from .base import BaseModel, form_field
 
 @dataclass
-class Events:
-    _uid: str
-    title: str
-    date: datetime.date
-    time: datetime.time
-    summary: str
-    description: str
-    tags: List[str]
-    locale: str
-    privacy: Privacy
-
-    @classmethod
-    def fields(cls):
-        return [
-            field.name
-            for field in fields(cls)
-            if not field.name.startswith("_")
-        ]
-
-    @classmethod
-    def privatefields(cls):
-        return [
-            field.name
-            for field in fields(cls)
-            if field.name not in ["_uid", "locale"]
-        ]
+class Event(BaseModel):
+    date: datetime.date = form_field("date")
+    time: datetime.time = form_field("datetime-local")
+    summary: str = form_field("textarea")
+    description: str = form_field("textarea")
