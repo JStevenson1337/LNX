@@ -4,6 +4,7 @@
 <head>
     <title>Create an Event</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style/style.css"/>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
         .container {
@@ -18,7 +19,7 @@
         <p>Fill out this form to create your event</p>
         <form>
         {% for item in fields %}
-            <div><label>{{ item }}: <input type="text" name="{{ item }}"></label></div
+            <div id="fields"><label>{{ item }}: <input type="text" name="{{ item }}"></label></div
         {% endfor %}
         </form>
     </div>
