@@ -4,7 +4,7 @@
 
 >Created by
 >> [JI](https://twitter.com/joseisraelcruz)
-<br>
+>
 >> [Jeremy](https://twitter.com/oktechguru918)
-<br>
+>
 >> [Caswell](github.com/christopher-Caswell)
