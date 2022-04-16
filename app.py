@@ -1,5 +1,9 @@
-from flask import Flask
-from flask import render_template
+import pdb
+from flask import render_template, request, Flask
+from db import save_data
+from models.events import Events
+from dataclasses import fields
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -23,10 +27,15 @@ def event_search():
     return render_template("event_search.html", **data)
 
 
-@app.route("/search/event_create")
+@app.route("/search/event_create", methods=["GET", "POST"])
 def event_create():
-    data = {}
-    return render_template("event_create.html", **data)
+    pdb.set_trace()
+    if request.method == "GET":
+        return render_template(
+            "event_create.html",
+            fields=Events.fields()
+        )
+    save_data(request.data)
 
 @app.route("/search/event_page")
 def event_page():
