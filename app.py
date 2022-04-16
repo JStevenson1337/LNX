@@ -16,10 +16,15 @@ def calendar_search():
     data = {}
     return render_template("calendar_search.html", **data)
 
-@app.route("/search/calendar_create")
+
+@app.route("/search/calendar_create", methods=["GET", "POST"])
 def calendar_create():
-    data = {}
-    return render_template("calendar_create.html", **data)
+    if request.method == "GET":
+        return render_template(
+            "calendar_create.html",
+            fields=Events.fields()
+        )
+    save_data(request.data)
 
 @app.route("/search/event_search")
 def event_search():
@@ -41,22 +46,11 @@ def event_page():
     data = {}
     return render_template("event_page.html", **data)
 
-
 @app.route("/search/public_event")
 def public_event():
     data = {}
     return render_template("public_event.html", **data)
 
-
-@app.route("/search/public_create")
-def public_create():
-    data = {}
-    return render_template("public_create.html", **data)
-
-@app.route("/search/private_event")
-def private_event():
-    data = {}
-    return render_template("private_event.html", **data)
 
 @app.route("/search/private_create")
 def private_create():
@@ -67,11 +61,6 @@ def private_create():
 def semi_private():
     data = {}
     return render_template("semi_private.html", **data)
-
-@app.route("/search/semi_private_create")
-def semi_private_create():
-    data = {}
-    return render_template("semi_private_create.html", **data)
 
 @app.route("/search/calendar_page")
 def calendar_page():
