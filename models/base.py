@@ -11,7 +11,7 @@ from models.privacystate import Privacy
 
 def form_field(_type: Optional[str] = "text", **kwargs):
     """Creates a Model field that should appear on forms."""
-    metadata = {"form": True, "type": _type}
+    metadata = {"form": True, "type": _type, **kwargs.pop("metadata", {})}
     return field(metadata=metadata, **kwargs)
 
 
@@ -34,10 +34,12 @@ class BaseModel:
     Defines attributes/methods that all objects contain.
     """
 
+    host: str = form_field()
     name: str = form_field()
     locale: str = form_field()
     tags: List[str] = form_field("textarea")
     privacy: Privacy = select_form_field(options=[e.value for e in Privacy])
+    password: str = form_field("password", metadata={"optional": True})
 
     def __init__(self, *args, **kwargs):
         """Init Hack!
@@ -59,18 +61,16 @@ class BaseModel:
         )
 
     @classmethod
-    @property
-    def form_fields(cls):
+    def form_fields(self):
         return {
             field.name: field.metadata
-            for field in fields(cls)
+            for field in fields(self)
             if field.metadata.get("form")
         }
 
     @classmethod
-    @property
-    def fields(cls) -> List[Field]:
-        return fields(cls)
+    def fields(self) -> List[Field]:
+        return fields(self)
 
     @classmethod
     def save_from_form_data(cls, request: Request):
