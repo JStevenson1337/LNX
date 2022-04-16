@@ -55,12 +55,13 @@ class BaseModel:
         """
         super().__init__(*args, **kwargs)
         self._uid: str = field(
-            default_factory=uuid4, metadata={"private": True}
+            default_factory=uuid4(), metadata={"private": True}
         )
 
     @classmethod
     @property
     def form_fields(cls):
+        print("here!")
         return {
             field.name: field.metadata
             for field in fields(cls)

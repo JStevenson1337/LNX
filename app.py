@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 from flask import render_template, Flask, request, make_response
 from models import Calendar, Event
 
+=======
+from flask import Flask
+from flask import render_template
+>>>>>>> Stashed changes
 app = Flask(__name__)
 
 
@@ -11,6 +16,7 @@ def home():
     return render_template("index.html", **data)
 
 
+<<<<<<< Updated upstream
 ##################### CALENDAR ROUTES #########################
 """
 Routes:
@@ -20,15 +26,64 @@ Routes:
     4. GET /calendar/<calendar_id>
 """
 @app.route("/search/calendars")
+=======
+@app.route("/search/calendar_search")
+>>>>>>> Stashed changes
 def calendar_search():
     calendars = Calendar.all()  # .filter()
     return render_template("calendar_search.html", calendars=calendars)
 
+<<<<<<< Updated upstream
 
 @app.route("/create/calendar", methods=["GET"])
 def calendar_form():
     return render_template("calendar_create.html", fields=Calendar.fields)
 
+=======
+@app.route("/search/event_search")
+def event_search():
+    data = {}
+    return render_template("event_search.html", **data)
+
+@app.route("/search/event_page")
+def event_page():
+    data = {}
+    return render_template("event_page.html", **data)
+
+
+@app.route("/search/public_event")
+def public_event():
+    data = {}
+    return render_template("public_event.html", **data)
+
+@app.route("/search/private_event")
+def private_event():
+    data = {}
+    return render_template("private_event.html", **data)
+
+@app.route("/search/semi_private")
+def semi_private():
+    data = {}
+    return render_template("semi_private.html", **data)
+
+@app.route("/search/calendar_page")
+def calendar_page():
+    data = {}
+    return render_template("calendar_page.html", **data)
+
+@app.route("/search/public_calendar")
+def public_calendar():
+    data = {}
+    return render_template("public_calendar.html", **data)
+
+@app.route("/search/private_calendar")
+def private_calendar():
+    data = {}
+    return render_template("private_calendar.html", **data)
+
+"""
+# What do we need....
+>>>>>>> Stashed changes
 
 @app.route("/create/calendar", methods=["POST"])
 def new_calendar():
