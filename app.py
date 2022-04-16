@@ -29,7 +29,6 @@ def event_search():
 
 @app.route("/search/event_create", methods=["GET", "POST"])
 def event_create():
-    pdb.set_trace()
     if request.method == "GET":
         return render_template(
             "event_create.html",
