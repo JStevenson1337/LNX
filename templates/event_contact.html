@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Create an Event</title>
+    <title>Contact Event Coordinator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}"/>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -16,13 +16,14 @@
 
 <body>
     <div class="container">
-        <p>Fill out this form to create your event</p>
+        <p>Contact {{ event.host }} for more info on {{ event.name }}</p>
         <form method="POST">
-        <div id="fields">
-            {% for field in fields %}
-                <label>{{ field }}: <input type="{{ fields[field]['type'] }}" name="{{ field }}"></label>
-            {% endfor %}
-        </div>
+            <div id="fields">
+                <label>Name: <input type="text" name="name"></label>
+                <label>Telephone: <input type="tel" name="tel"></label>
+                <label>Email: <input type="email" name="email"></label>
+                <label>More info: <input type="textarea" name="info"></label>
+            </div>
         <input type="submit">
         </form>
     </div>

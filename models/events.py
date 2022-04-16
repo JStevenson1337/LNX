@@ -1,7 +1,5 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
-from typing import List
-from uuid import uuid4
 from .base import BaseModel, form_field
 
 @dataclass
