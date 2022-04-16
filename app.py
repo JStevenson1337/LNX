@@ -69,8 +69,11 @@ def new_event():
 
 @app.route("/search/events")
 def event_search():
-    events = Event.all()  # .filter()
-    return render_template("event_search.html", events=events)
+    try:
+        events = Event.all()  # .filter()
+        return render_template("event_search.html", events=events)
+    except:
+        return("<p>No events available</p>")
 
 
 @app.route("/event/<event_id>")

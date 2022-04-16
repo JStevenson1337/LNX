@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search for an Event</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}"/>
+    <style type="text/css">
+        .container {
+            max-width: 500px;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Search for an event</h1>
+        <input type="searchbar"/>
+        {% for event in events %}
+        <h3><a href="events/{{ event._uid }}">{{ event.name }}</a></h3>
+        <li><ul>{{ event.date }}</ul></li>
+        <li><ul>{{ event.time }}</ul></li>
+        <li><ul>{{ event.locale }}</ul></li>
+        <li><ul>{{ event.summary }}</ul></li>
+        {% endfor %}
+        <div class="events"></div>
+    </div>
+</body>
+
+</html>
